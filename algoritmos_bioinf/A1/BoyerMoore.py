@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 class BoyerMoore:
-    
+
     def __init__(self, alphabet, pattern):
         self.alphabet = alphabet
         self.pattern = pattern
@@ -14,23 +14,16 @@ class BoyerMoore:
     def process_bcr(self):
         '''
         implementação do good suffix rule
-        
         '''
         self.occ = {}
         for c in self.alphabet: 
             self.occ[c]=-1
         for i in range(len(self.pattern)):
-            '''
-    outra maneira:
-            c=self.pattern[i]
-            self.occ[c]=i
-            '''
             self.occ[self.pattern[i]] = i
             
     def process_gsr(self):
         '''
         implementação do good suffix rule
-
         '''
         self.f = []
         self.s = []
@@ -41,7 +34,6 @@ class BoyerMoore:
     outra maneira:
         self.f = [0 for i in range(len(self.pattern)+1)]
         self.s = [0 for i in range(len(self.pattern)+1)]
-
         '''    
         i = len(self.pattern)
         j = len(self.pattern)+1
