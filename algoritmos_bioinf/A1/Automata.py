@@ -55,7 +55,13 @@ def test():
     print (auto.applySeq("CACAACAA"))
     print (auto.occurencesPattern("CACAACAA"))
 
-test()
+def test2():
+    auto2 = Automata('AGT', 'AGTGA')
+    auto2.printAutomata()
+    print(auto2.applySeq('ATGATGATAGAGAGTGGTATAGATAGATAGTAGAGTAGAGTAG'))
+    print(auto2.occurencesPattern("ATAGTAGTGATGATAAGTAGTGAGAGTGGTATAGATAGATAGTGAGAGTAGAGTAG"))
+
+test2()
 
 #States:  4
 #Alphabet:  AC
