@@ -101,7 +101,6 @@ class SuffixTree:
             return sorted(list(set(res)))
 
     #2) Conjunto_1
-    def largestCommonSubstring(self):
 
 
 
