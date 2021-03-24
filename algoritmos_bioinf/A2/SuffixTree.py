@@ -56,21 +56,78 @@ class SuffixTree:
                 res.extend(leafes)
         return res
 
+    #1.A) Conjunto_1
+    def nodes_below(self, node):
+        res = []
+        for nucleotido in list(self.nodes[node][1].keys()):
+            check = False
+            B1 = False
+            while B1 != True:  # Primeira Barreira => Determinar se o nó principal já acabou
+                if nucleotido != '$' and check == False:
+                    id = self.nodes[node][1][nucleotido]
+                    res.append(id)
+                    B2 = False
+                    while B2 == False:  # Segunda Barreira => Serve para saltar de nó em nó
+                        for inner_check in self.nodes[id][1].keys():
+                            if inner_check != '$':
+                                res.append(self.nodes[id][1][inner_check])
+                                id = res[-1]
+                            else:
+                                if '$' in self.nodes[id][1].keys():
+                                    check = True
+                                    B2 = True
+                B1 =True
+        return res
+
+    #1.B) Conjunto_1
+    def matches_prefix(self, prefix):
+        res = []
+        if not self.find_pattern(prefix): return -1        #Ver se o padrão existe na arvore, caso não, dá -1
+        else:
+            res.append(prefix)
+            id = self.nodes[0][1][prefix[0]]
+            c = 1
+            while c!=len(prefix):                           #Determinar a posição da ultima letra do padrão
+                for i in self.nodes[id][1].keys():
+                    if c != len(prefix) and i == prefix[c]:
+                        c+=1
+                        id = self.nodes[id][1][i]
+
+            str = prefix
+            for no in self.nodes_below(id):                 #Associar a uma lista resultado todos as sequências possíveis com o prefixo dado
+                aux_list = list(self.nodes[no-1][1].keys())
+                str += aux_list[0]
+                res.append(str)
+            return sorted(list(set(res)))
+
+    #2) Conjunto_1
+    def largestCommonSubstring(self):
+
+
+
+
+
+
+
+
+
+
 def test():
     seq = "TACTA"
     st = SuffixTree()
     st.suffix_tree_from_seq(seq)
     st.print_tree()
     print (st.find_pattern("TA"))
-    print (st.find_pattern("ACG"))
+    #print (st.find_pattern("ACG"))
+    print(st.nodes_below(1))
+    print(st.matches_prefix('TA'))
 
 def test2():
     seq = "TACTA"
     st = SuffixTree()
-    st.suffix_tree_from_seq(seq)
-    print (st.find_pattern("TA"))
-    # print(st.repeats(2,2))
+    #st.suffix_tree_from_seq(seq)
+    #print(st.find_pattern("TA"))
+    #print(st.repeats(2,2))
 
 test()
-print()
-test2()
+#test2()
