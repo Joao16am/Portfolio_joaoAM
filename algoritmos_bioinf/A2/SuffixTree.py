@@ -61,22 +61,21 @@ class SuffixTree:
         while len(res) != len(c_res):
             if len(self.nodes[node][1].keys()) != 0:  # Aqui é para meter os nós
                 for nuc in self.nodes[node][1].keys():
-                    print(nuc)
                     id2 = self.nodes[node][1][nuc]  # para qual leva o tuplo do nuc
                     if nuc != '$' and list(self.nodes[id2][1].keys()) != ['$']:
                         res.append(self.nodes[node][1][nuc])
-            print(res, c_res)
             for i in res[0:]:
                 if i not in c_res:  # é para alterar de Nó em Nó !
                     c_res.append(i)
                     node = i
                     break
-
             res = list(dict.fromkeys(res))
             c_res = list(dict.fromkeys(c_res))
         res.remove(res[0])  # Remover o nó inicial
-        if len(res) != 0: return sorted(res)
-        else: return -1
+        if len(res) != 0:
+            return sorted(res)
+        else:
+            return -1
 
     # 1.B) Conjunto_1
     def matches_prefix(self, prefix):
@@ -102,15 +101,6 @@ class SuffixTree:
             return sorted(list(set(res)))
 
     # 2) Conjunto_1
-    def largestCommonSubstring(self):
-        while True:
-
-
-
-
-
-
-
 
 
 class DoubleTree:
@@ -151,23 +141,26 @@ class DoubleTree:
                 self.add_suffix(seq[i:], i)
 
     def nodes_below(self, node):
-        res, c_res = [node], []  #c_res => é uma lista para confirmar quais os nós já lidos
-        while len(res)!=len(c_res):
-            if len(self.nodes[node][1].keys()) != 0:  #Aqui é para meter os nós
+        res, c_res = [node], []  # c_res => é uma lista para confirmar quais os nós já lidos
+        while len(res) != len(c_res):
+            if len(self.nodes[node][1].keys()) != 0:  # Aqui é para meter os nós
                 for nuc in self.nodes[node][1].keys():
-                    id2 = self.nodes[node][1][nuc] #para qual leva o tuplo do nuc
-                    if nuc != '$' and nuc != '#' and list(self.nodes[id2][1].keys()) != ['#'] and list(self.nodes[id2][1].keys()) != ['$']:
+                    id2 = self.nodes[node][1][nuc]  # para qual leva o tuplo do nuc
+                    if nuc != '$' and nuc != '#' and list(self.nodes[id2][1].keys()) != ['#'] and list(
+                            self.nodes[id2][1].keys()) != ['$']:
                         res.append(self.nodes[node][1][nuc])
             for i in reversed(res):
-                if i not in c_res:  #é para alterar de Nó em Nó !
+                if i not in c_res:  # é para alterar de Nó em Nó !
                     c_res.append(i)
                     node = i
                     break
             res = list(dict.fromkeys(res))
             c_res = list(dict.fromkeys(c_res))
-        res.remove(res[0]) #Remover o nó inicial
-        if len(res)!=0: return sorted(res)
-        else: return -1
+        res.remove(res[0])  # Remover o nó inicial
+        if len(res) != 0:
+            return sorted(res)
+        else:
+            return -1
 
     def find_pattern(self, pattern):
         pos = 0
@@ -191,17 +184,15 @@ class DoubleTree:
         return res
 
     def largestCommonSubstring(self):
-        check, node = [[],[]], 0
+        check, node = [[], []], 0
         while node != len(self.nodes):
             for i in self.nodes[node][1].keys():
-                if i == '$': check[0].append(node)
-                elif i == '#': check[1].append(node)
+                if i == '$':
+                    check[0].append(node)
+                elif i == '#':
+                    check[1].append(node)
             node += 1
         print(check)
-
-
-
-
 
 
 def test():
@@ -229,13 +220,12 @@ def test3():
     DT = DoubleTree()
     DT.suffix_tree_from_seqs(seq1, seq2)
     DT.print_tree()
-    #print(DT.nodes_below(0))
-    #print(DT.largestCommonSubstring())
-
-    #print(DT.find_pattern('ACT'))
+    # print(DT.nodes_below(0))
+    # print(DT.largestCommonSubstring())
+    # print(DT.find_pattern('ACT'))
     print(DT.get_leafes_below(0))
 
 
-#test()
-#test2()
+# test()
+# test2()
 test3()
