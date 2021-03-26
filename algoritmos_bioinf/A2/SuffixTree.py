@@ -64,7 +64,7 @@ class SuffixTree:
                     id2 = self.nodes[node][1][nuc]  # para qual leva o tuplo do nuc
                     if nuc != '$' and list(self.nodes[id2][1].keys()) != ['$']:
                         res.append(self.nodes[node][1][nuc])
-            for i in res[0:]:
+            for i in reversed(res):
                 if i not in c_res:  # é para alterar de Nó em Nó !
                     c_res.append(i)
                     node = i
@@ -93,8 +93,7 @@ class SuffixTree:
                         id = self.nodes[id][1][i]
 
             str = prefix
-            for no in self.nodes_below(
-                    id):  # Associar a uma lista resultado todos as sequências possíveis com o prefixo dado
+            for no in self.nodes_below(id):  # Associar a uma lista resultado todos as sequências possíveis com o prefixo dado
                 aux_list = list(self.nodes[no - 1][1].keys())
                 str += aux_list[0]
                 res.append(str)
@@ -220,12 +219,12 @@ def test3():
     DT = DoubleTree()
     DT.suffix_tree_from_seqs(seq1, seq2)
     DT.print_tree()
-    # print(DT.nodes_below(0))
+    print(DT.nodes_below(1))
     # print(DT.largestCommonSubstring())
     # print(DT.find_pattern('ACT'))
-    print(DT.get_leafes_below(0))
+    #print(DT.get_leafes_below(0))
 
 
-# test()
+test()
 # test2()
-test3()
+#test3()
