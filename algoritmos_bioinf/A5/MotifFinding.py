@@ -220,7 +220,6 @@ class MotifFinding:
         best_sc = self.score(s)
         improve = True
         while improve:
-            print(best_sc, s)
             # Escolher uma das seqs aleatoriamente
             seq_out = randint(0, len(self.seqs) - 1)
 
