@@ -101,8 +101,7 @@ class SuffixTree:
 
     # 2) Conjunto_1
 
-
-class DoubleTree:
+class DoubleTree(SuffixTree):
 
     def __init__(self):
         self.nodes = {0: (-1, {})}  # root node
@@ -145,8 +144,7 @@ class DoubleTree:
             if len(self.nodes[node][1].keys()) != 0:  # Aqui é para meter os nós
                 for nuc in self.nodes[node][1].keys():
                     id2 = self.nodes[node][1][nuc]  # para qual leva o tuplo do nuc
-                    if nuc != '$' and nuc != '#' and list(self.nodes[id2][1].keys()) != ['#'] and list(
-                            self.nodes[id2][1].keys()) != ['$']:
+                    if nuc != '$' and nuc != '#' and list(self.nodes[id2][1].keys()) != ['#'] and list(self.nodes[id2][1].keys()) != ['$']:
                         res.append(self.nodes[node][1][nuc])
             for i in reversed(res):
                 if i not in c_res:  # é para alterar de Nó em Nó !
@@ -202,7 +200,7 @@ def test():
     # print (st.find_pattern("TA"))
     # print (st.find_pattern("ACG"))
     print(st.nodes_below(1))
-    # print(st.matches_prefix('TA'))
+    print(st.matches_prefix('TA'))
 
 
 def test2():
@@ -219,12 +217,12 @@ def test3():
     DT = DoubleTree()
     DT.suffix_tree_from_seqs(seq1, seq2)
     DT.print_tree()
-    print(DT.nodes_below(1))
-    # print(DT.largestCommonSubstring())
+    #print(DT.nodes_below(1))
+    print(DT.largestCommonSubstring())
     # print(DT.find_pattern('ACT'))
     #print(DT.get_leafes_below(0))
 
 
-test()
+#test()
 # test2()
-#test3()
+test3()
