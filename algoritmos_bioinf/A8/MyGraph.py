@@ -9,8 +9,9 @@ class MyGraph:
     def __init__(self, g = {}):
         ''' Constructor - takes dictionary to fill the graph as input; default is empty dictionary '''
         self.graph = g
-        if g != {}: self.id = self.id_graph()
-        self.mat_count()
+        if g != {}:
+            self.id = self.id_graph()
+            if self.id_graph() == 'grw':   self.mat_count()
 
     def print_graph(self):
         ''' Prints the content of the graph as adjacency list '''
@@ -186,6 +187,7 @@ class MyGraph:
                     elif elem not in visited:
                         l.append((elem, preds + [node]))
                         visited.append(elem)
+
         else:
             l = [(s, 0, 0)]
             res_t = []
