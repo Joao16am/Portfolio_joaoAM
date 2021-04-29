@@ -245,7 +245,7 @@ class MotifFinding:
 
             # calcula o novo score
             s = [j for j in s if j != -1]
-            print(best_sc, s)
+
             Scr = self.score(s)
 
             # verifica se houve melhoria

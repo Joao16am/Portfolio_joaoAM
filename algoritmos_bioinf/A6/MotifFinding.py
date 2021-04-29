@@ -48,8 +48,13 @@ class MotifFinding:
             score += maxcol
         return score
 
-    def scoreMult(self, s):
+    def scoreMult(self, s, pwm=None):
         score = 1.0
+        if not pwm:
+            motif = self.createMotifFromIndexes(s)
+            motif.createPWM()
+
+
         motif = self.createMotifFromIndexes(s)
         motif.createPWM()
         mat = motif.pwm

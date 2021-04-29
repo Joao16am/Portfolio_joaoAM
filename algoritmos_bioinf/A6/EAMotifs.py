@@ -20,14 +20,13 @@ def printMat(mat):
 
 class EAMotifsInt (EvolAlgorithm):
     def __init__(self, popsize, numits, noffspring, filename):
-        self.motifs = MotifFinding()
+        self.motifs_finding = MotifFinding()
         self.motifs.readFile(filename, "dna")
         indsize = len(self.motifs)
         EvolAlgorithm.__init__(self, popsize, numits, noffspring, indsize)
 
     def initPopul(self, indsize):
-        maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
-        self.popul = PopulInt(self.popsize, indsize, maxvalue, [])
+        self.popul = PopulInt(self.popsize, indsize)
 
     def evaluate(self, indivs):
         for i in range(len(indivs)):
@@ -39,7 +38,7 @@ class EAMotifsInt (EvolAlgorithm):
 
 class EAMotifsReal (EvolAlgorithm):
     def __init__(self, popsize, numits, noffspring, filename):
-        self.motifs = MotifFinding()
+        self.motifs_finding = MotifFinding()
         self.motifs.readFile(filename, "dna")
         indsize = self.motifs.motifSize * len(self.motifs.alphabet)
         EvolAlgorithm.__init__(self, popsize, numits, noffspring, indsize)
@@ -62,13 +61,15 @@ class EAMotifsReal (EvolAlgorithm):
         for i in range(len(indivs)):
             ind = indivs[i]
             sol = ind.getGenes()
-            self.motifs.pwm = self.vec_to_pwm(sol)
+            pwm = self.vec_to_pwm(sol)
+            mtf = MyMotifs(pwm=pwm, alphabet=self.motif_finding.alphabet)
             s = []
             for j in range(len(self.motifs.seqs)):
-                p = self.motifs.mostProbableSeq(seq)
+                seq = self.motifs_finding.seqs[j].seq
+                p = mtf.mostProbableSeq(seq)
                 s.append(p)
 
-            fir = self.motifs.score(sol)  #Tens de editar este no motifs
+            fit = self.motifs_finding.score(sol)  #Tens de editar este no motifs
                                         #Ele cria uma nova matriz tens de o meter a
                                         #usar a matriz s
             ind.setFitness(fit)
