@@ -312,12 +312,12 @@ def test3():
 def test4():
     mf = MotifFinding()
     mf.readFile("exemploMotifs.txt","dna")
-    '''print("Heuristic stochastic")
+    print("Heuristic stochastic")
     sol = mf.heuristicStochastic()
     print ("Solution: " , sol)
     print ("Score:" , mf.score_pseudo(sol))
     print ("Score mult:" , mf.scoreMult(sol))
-    print("Consensus:", mf.createMotifFromIndexes(sol).consensus())'''
+    print("Consensus:", mf.createMotifFromIndexes(sol).consensus())
     
     sol2 = mf.gibbs()
     print ("Score:" , mf.score(sol2))
