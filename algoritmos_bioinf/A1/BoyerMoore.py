@@ -76,4 +76,3 @@ def test():
 test()
 
 # result: [5, 13, 23, 37]
-            

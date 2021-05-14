@@ -66,6 +66,7 @@ def test2():
     print(auto2.occurencesPattern("ATAGTAGTGATGATAAGTAGTGAGAGTGGTATAGATAGATAGTGAGAGTAGAGTAG"))
 
 
+
 #test2()
 
 # States:  4

@@ -178,6 +178,7 @@ class DoubleTree(SuffixTree):
                 newnode = self.nodes[node][1][k]
                 leafes = self.get_leafes_below(newnode)
                 res.extend(leafes)
+        res = list(set(res))
         return res
 
     def largestCommonSubstring(self):
@@ -189,7 +190,7 @@ class DoubleTree(SuffixTree):
                 elif i == '#':
                     check[1].append(node)
             node += 1
-        print(check)
+        return check
 
 
 def test():
@@ -217,10 +218,10 @@ def test3():
     DT = DoubleTree()
     DT.suffix_tree_from_seqs(seq1, seq2)
     DT.print_tree()
-    #print(DT.nodes_below(1))
+    print(DT.nodes_below(1))    # 2 3 4 5
     print(DT.largestCommonSubstring())
-    # print(DT.find_pattern('ACT'))
-    #print(DT.get_leafes_below(0))
+    #print(DT.find_pattern('ACT'))
+    #print(DT.get_leafes_below(3))
 
 
 #test()

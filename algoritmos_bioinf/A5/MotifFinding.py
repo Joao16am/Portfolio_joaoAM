@@ -324,3 +324,4 @@ def test4():
     print ("Score mult:" , mf.scoreMult(sol2))
 
 test4()
+
