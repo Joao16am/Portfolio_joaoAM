@@ -23,6 +23,12 @@ class DeBruijnGraph (MyGraph):
         return res
 
     def create_deBruijn_graph(self, frags):
+        for seq in frags:
+            suf = suffix(seq)
+            self.add_vertex(suf)
+            pref = prefix(seq)
+            self.add_vertex(pref)
+            self.add_edge(pref, suf)
         pass
 
     def seq_from_path(self, path):
