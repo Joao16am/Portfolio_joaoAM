@@ -54,8 +54,12 @@ class OverlapGraph(MyGraph):
         else: return node
     
     def seq_from_path(self, path):
-        # ...
-        return
+        if not self.check_if_hamiltonian_path(path): return None
+        seq = self.get_seq(path[0])
+        for i in range(1, len(path)):
+            nxt = self.get_seq(path[i])
+            seq += nxt[-1]
+        return seq
    
                     
 # auxiliary
@@ -90,15 +94,17 @@ def test3():
      ovgr.print_graph()
 
 def test4():
-    frags = ["ATA",  "ACC", "ATG", "ATT", "CAT", "CAT", "CAT", "CCA" , "GCA", "GGC", "TAA", "TCA", "TGG", "TTC", "TTT"]
+    frags = ["ATA",  "ACC", "ATG", "ATT", "CAT", "CAT", "CAT", "CCA", "GCA", "GGC", "TAA", "TCA", "TGG", "TTC", "TTT"]
     ovgr = OverlapGraph(frags, True)
     path = ["ACC−2", 'CCA−8', 'CAT−5', 'ATG−3']
     print (ovgr.check_if_valid_path(path))
     print (ovgr.check_if_hamiltonian_path(path))
     path2 = ['ACC−2', 'CCA−8', 'CAT−5', 'ATG−3', 'TGG−13', 'GGC−10', 'GCA−9', 'CAT−6', 'ATT−4', 'TTT−15', 'TTC−14', 'TCA−12', 'CAT−7', 'ATA−1', 'TAA−11']
+    #seq2 = OverlapGraph(frags, True)
+    #seq2.print_graph()
     print (ovgr.check_if_valid_path(path2))
     print (ovgr.check_if_hamiltonian_path(path2))
-    print (ovgr.seq_from_path(path2))
+    #print (ovgr.seq_from_path(path2))
 
 def test5():
     frags = [ "ATA", "ACC", "ATG", "ATT", "CAT", "CAT", "CAT", "CCA", "GCA", "GGC", "TAA", "TCA", "TGG", "TTC", "TTT"]
@@ -120,13 +126,13 @@ def test6():
     print (ovgr.seq_from_path(path))
    
 #test1()
-print()
+
 #test2()
-print()
-test3()
-#print()
+
+#test3()
+
 #test4()
-#print()
+
 #test5()
-#print()
-#test6()
+
+test6()
