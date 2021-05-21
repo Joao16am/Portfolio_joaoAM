@@ -73,16 +73,16 @@ def test3():
     frags = composition(3, orig_sequence)
     dbgr = DeBruijnGraph(frags)
     dbgr.print_graph()
-    print(dbgr.check_nearly_balanced_graph())
+    print('Nearly',dbgr.check_nearly_balanced_graph())
     p = dbgr.eulerian_path()
     print(p)
     print(dbgr.seq_from_path(p))
 
 
 
-test1()
-print()
+#test1()
+#print()
 #test2()
 #print()
-#test3()
+test3()
     

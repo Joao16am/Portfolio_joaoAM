@@ -367,7 +367,7 @@ class MyGraph:
             if res != []:
                 while pair[0] not in res:
                     pair = edges_visit[i]
-            i = i + 1
+                    i = i + 1
             edges_visit.remove(pair)
             start, nxt = pair
             cycle = [start, nxt]
@@ -375,14 +375,14 @@ class MyGraph:
                 for suc in self.graph[nxt]:
                     if (nxt, suc) in edges_visit:
                         pair = (nxt, suc)
-            nxt = suc
-            cycle.append(nxt)
-            edges_visit.remove(pair)
+                        nxt = suc
+                        cycle.append(nxt)
+                        edges_visit.remove(pair)
             if not res:
                 res = cycle
             else:
                 pos = res.index(cycle[0])
-            for i in range(len(cycle) - 1): res.insert(pos + i + 1, cycle[i + 1])
+                for i in range(len(cycle) - 1): res.insert(pos + i + 1, cycle[i + 1])
         return res                 
       
     def eulerian_path(self):
@@ -391,7 +391,7 @@ class MyGraph:
         self.graph[unb[1]].append(unb[0])
         cycle = self.eulerian_cycle()
         for i in range(len(cycle)-1):
-            if cycle[i] == unb[1] and cycle[i+1] ==  unb[0]:
+            if cycle[i] == unb[1] and cycle[i+1] == unb[0]:
                 break
         path = cycle[i+1:] + cycle[1:i+1]
         return path
@@ -515,8 +515,8 @@ if __name__ == "__main__":
     #test1()
     #test2()
     #test3()
-    test4()
+    #test4()
     #test5()
-    #test6()
+    test6()
     
     
