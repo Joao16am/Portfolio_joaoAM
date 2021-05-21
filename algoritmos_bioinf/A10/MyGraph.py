@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 23 01:33:42 2017
-
-@author: miguelrocha
-"""
-
 ## Graph represented as adjacency list using a dictionary
 ## keys are vertices
 ## values of the dictionary represent the list of adjacent vertices of the key node
@@ -368,7 +362,27 @@ class MyGraph:
         edges_visit = list(self.get_edges())
         res = []
         while edges_visit:
-            pass  ## completar aqui
+            pair = edges_visit[0]
+            i = 1
+            if res != []:
+                while pair[0] not in res:
+                    pair = edges_visit[i]
+            i = i + 1
+            edges_visit.remove(pair)
+            start, nxt = pair
+            cycle = [start, nxt]
+            while nxt != start:
+                for suc in self.graph[nxt]:
+                    if (nxt, suc) in edges_visit:
+                        pair = (nxt, suc)
+            nxt = suc
+            cycle.append(nxt)
+            edges_visit.remove(pair)
+            if not res:
+                res = cycle
+            else:
+                pos = res.index(cycle[0])
+            for i in range(len(cycle) - 1): res.insert(pos + i + 1, cycle[i + 1])
         return res                 
       
     def eulerian_path(self):
