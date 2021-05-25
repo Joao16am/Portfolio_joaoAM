@@ -200,7 +200,6 @@ class MyGraph:
                         l.append((node_t, dist + 1, price + price_t))
                     if node == d:
                         res_t.append((node, dist, price))
-
             if len(res_t) == 0:
                 return None
             else:
@@ -362,10 +361,10 @@ def test8():
 
 def test9():
     grw = MyGraph({1: [(2, 10)], 2: [(3, 20), (4, 10)], 3: [(5, 30)], 4: [(5, 10)], 5: [(6, 10)], 6: []})
-    print(grw.distance(1,6))
+    #print(grw.distance(1,6))
 
     grw2 = MyGraph({1: [(2, 10)], 2: [(3, 10), (4, 5)], 3: [(6, 10)], 4: [(5, 5)], 5: [], 6: [(7,10)], 7:[]})
-    print(grw2.distance(1,7))
+    #print(grw2.distance(1,7))
 
     grw3 = MyGraph({1: [(2, 10)], 2: [(3, 10), (4, 5)], 3: [(6, 10)], 4: [(5, 5), (8, 1)], 5: [], 6: [(7, 10)], 7: [], 8: [(6, 1)]})
     print(grw3.distance(1, 7))
